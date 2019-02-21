@@ -42,7 +42,7 @@
 
 <script>
 import { TweenMax, Power2, TimelineLite } from 'gsap/TweenMax';
-import { getComputedPx } from '@/config/util';
+import { getComputedPx } from '@/config/utils.ts';
 import Hammer from 'hammerjs';
 
 const onepx = () => getComputedPx() / 100;
@@ -58,7 +58,10 @@ export default {
 	},
 	mounted() {
 		this.initGusture();
-
+		setTimeout(() => {
+			this.currentStep++;
+			this.runAnimate();
+		}, 1000);
 		const result = getComputedPx();
 	},
 	methods: {
