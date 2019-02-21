@@ -1,110 +1,96 @@
 <template>
-    <section>
-        <section class="preload">
-            <div class="preload-bottom"></div>
-            <div class="preload-top"></div>
-        </section>
-        <i></i>
-        <vue-preload @percentage="percentage" @loaded="loaded"></vue-preload>
+    <section
+        class="loading"
+        :style="{'background-image': `url(${require('imgs/bg-main.png')})`}"
+    >
+        <div class="placeholder"></div>
+        <div class="loading__progress">
+            <div class="loading__progress-gray"
+                :style="{'background-image': `url(${require('imgs/bg-progress-gray.png')})`}"
+            ></div>
+            <div class="loading__progress-white"
+                :style="{
+                    'background-image': `url(${require('imgs/bg-progress-white.png')})`,
+                    'width': progress + '%'
+                }"
+            ></div>
+        </div>
+        <div class="loading__text">{{progress}} % </div>
     </section>
 
 </template>
 
 <script>
-    import { bus } from '@/config/util'
-    import Preload from '@/config/preload';
-    import config from '@/config/config';
-    export default {
-        created() {
-            let preload = new Preload(config, this.percentage, this.loaded);
-            preload.init();
-            // bus.musicList.bgm = new Howl({
-            //     src: [require('@/assets/audios/bgm.mp3')],
-            //     loop: true
-            // });
-            // bus.musicList.click = new Howl({
-            //     src: [require('@/assets/audios/click.mp3')]
-            // })
-        },
-        methods: {
-            percentage(data) {
+import { bus } from '@/config/util';
+import Preload from '@/config/preload';
+import config from '@/config/config';
 
-            },
-            loaded() {
+export default {
+	data() {
+		return {
+			progress: 90,
+		};
+	},
+	created() {
+		const preload = new Preload(config, this.percentage, this.loaded);
+        // preload.init();
 
-            }
-        }
-    };
+		setTimeout(() => {
+			this.loaded();
+		}, 3000);
+        // bus.musicList.bgm = new Howl({
+        //     src: [require('@/assets/audios/bgm.mp3')],
+        //     loop: true
+        // });
+        // bus.musicList.click = new Howl({
+        //     src: [require('@/assets/audios/click.mp3')]
+        // })
+	},
+	methods: {
+		percentage(data) {
+
+		},
+		loaded() {
+			this.$router.replace('Home');
+		},
+	},
+};
 
 </script>
 
-<style lang='scss'>
-    @import '../assets/scss/extend.scss';
+<style lang='scss' scoped>
+@import '../assets/scss/extend.scss';
 
-    i {
-        position: absolute;
-        top: tr(1000);
-        @extend .c;
-        width: tr(300);
-        height: tr(300);
-        @extend .b-contain;
-        background-image: url('../assets/img/share.png');
+.loading{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .placeholder{
+        height: tw(584);
     }
-
-    $wh:154;
-    .preload {
-        position: relative; // top: tr(1052);
-        top: tr(400);
+    &__progress{
+        width: tw(268);
+        height: tw(32);
         margin: 0 auto;
-        width: tr($wh);
-        height: tr($wh);
-        border-radius: tr($wh);
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: opacity 1s;
-        -webkit-transform: rotate(0deg); // 修复圆角的BUG
-        .preload-bottom {
-            $wh: 150;
-            width: tr($wh);
-            height: tr($wh);
-            border-radius: tr($wh);
-            background-color: RGB(233, 87, 51);
-            animation: bottomLoop linear 6s infinite;
-        }
-        .preload-top {
+        position: relative;
+
+        &>div{
+            background-position: left;
+            background-size: tw(268) tw(32);
+            background-repeat: no-repeat;
+            width: 100%;height: 100%;
             position: absolute;
-            left: 0;
-            top: 0;
-            width: tr($wh);
-            height: tr($wh);
-            background-color: RGB(242, 242, 242);
-            animation: topLoop linear 3s infinite;
         }
-        @keyframes topLoop {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(tr(-160));
-            }
-        }
-        @keyframes bottomLoop {
-            0% {}
-            40% {
-                background-color: RGB(233, 87, 51);
-            }
-            50% {
-                background-color: RGB(244, 205, 33);
-            }
-            90% {
-                background-color: RGB(244, 205, 33);
-            }
-            100% {
-                background-color: RGB(233, 87, 51);
-            }
-        }
+
     }
+    &__text{
+        color: white;
+        font-size: tw(22);
+        text-align: center;
+        margin-top: tw(56);
+    }
+}
 
 </style>

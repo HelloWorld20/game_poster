@@ -8,11 +8,12 @@ import sdk from './config/sdk';
 import { isWeixinBrowser } from './config/util';
 
 require('@/assets/animate.css');
+
 Vue.config.productionTip = false;
 
 if (isWeixinBrowser()) {
   // 微信环境下配置微信权限 需要上到平台才能正常调试微信接口
-	sdk.getWxSignPackage(sdk.configWx.bind(sdk));
+	sdk.getWxSignPackage(sdk.configWx);
 	sdk.setWxShare();
 }
 

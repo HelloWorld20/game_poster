@@ -5,11 +5,12 @@ export default{
 		desc: '分享描述',
 		link: window.location.href,
 		imgUrl: '',
+        // `${window.location.href}/static/share.png`
 	},
 	imgs: [
-	    'img/share.png',
-    ],
+		// 'img/share.png',
+	],
 	audios: [
 
-    ]
+	],
 };

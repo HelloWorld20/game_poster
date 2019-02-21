@@ -50,3 +50,37 @@ html,body{
     @return $px/200*1rem;
 }
 
+@function th($px) {
+    @return $px/1206 * 100vh;
+}
+
+@function tw($px) {
+    @return $px/750 * 100vw;
+}
+
+@keyframes float{
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-100%);
+    }
+}
+
+.floatAnimate{
+    animation: float 3s ease-in-out infinite;
+}
+
+@function shineAnimate() {
+    @return shine random() * 5 + 5s ease-in-out infinite;
+}
+@keyframes shine {
+    0%, 100%{
+        opacity: 1;
+        scale: 1;
+    }
+    50%{
+        opacity: 0.5;
+        scale: 0.6;
+    }
+}

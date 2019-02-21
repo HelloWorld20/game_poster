@@ -14,7 +14,7 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].js',
+    filename: '[name].[hash:5].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
@@ -24,6 +24,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      'imgs': resolve('src/assets/imgs')
     }
   },
   module: {
@@ -51,8 +52,8 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 100,
-          name: utils.assetsPath('img/[name].[ext]')
+          limit: 2048,
+          name: utils.assetsPath('img/[name].[hash:5].[ext]')
         }
       },
       {
@@ -60,7 +61,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 100,
-          name: utils.assetsPath('media/[name].[ext]')
+          name: utils.assetsPath('media/[name].[hash:5].[ext]')
         }
       },
       {
@@ -68,7 +69,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 100,
-          name: utils.assetsPath('fonts/[name].[ext]')
+          name: utils.assetsPath('fonts/[name].[hash:5].[ext]')
         }
       }
     ]
