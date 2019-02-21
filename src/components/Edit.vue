@@ -6,7 +6,7 @@
 
 <script>
 import capture from 'html2canvas';
-import { bus } from '@/config/util';
+import { bus } from '@/config/utils';
 
 export default {
 	data() {

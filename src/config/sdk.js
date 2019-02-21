@@ -1,5 +1,5 @@
-import config from './config';
 import axios from 'axios';
+import config from './config';
 
 const sdk = {
 
@@ -11,10 +11,6 @@ const sdk = {
 				url: location.href.split('#')[0],
 			},
 		}).then((res) => {
-			window.res = res;
-			console.log('sdk.getWxSignPackage成功');
-			console.log(JSON.stringify(res));
-            // const msg = result.data || result.msg;
 			sdk.wxSignPackage = res.data.payload;
 			if (callback) callback();
 		}, (err) => {
@@ -31,7 +27,7 @@ const sdk = {
 		}
             /* 微信接口 */
 		wx.config({
-			debug: true,
+			debug: false,
 			appId: sdk.wxSignPackage.appId,
 			timestamp: sdk.wxSignPackage.timestamp,
 			nonceStr: sdk.wxSignPackage.nonceStr,
@@ -77,9 +73,9 @@ const sdk = {
 			console.log('wx.ready');
 			// 分享朋友圈
 			wx.onMenuShareTimeline({
-				title: 'opts.title || shareInfo.title', // 分享标题
-				link: window.location.href, // 分享链接
-				imgUrl: '', // 分享图标
+				title: shareInfo.title, // 分享标题
+				link: shareInfo.link || location.href.split('#')[0], // 分享链接
+				imgUrl: shareInfo.imgUrl, // 分享图标
 				success: () => {
 					console.log('分享朋友圈成功');
 					if (callback) callback();
@@ -88,10 +84,10 @@ const sdk = {
 			});
 			// 分享朋友
 			wx.onMenuShareAppMessage({
-				title: 'opts.title || shareInfo.title', // 分享标题
-				desc: 'opts.desc || shareInfo.desc', // 分享描述
-				link: window.location.href, // 分享链接
-				imgUrl: '', // 分享图标
+				title: shareInfo.title, // 分享标题
+				desc: shareInfo.desc, // 分享描述
+				link: shareInfo.link || location.href.split('#')[0], // 分享链接
+				imgUrl: shareInfo.imgUrl, // 分享图标
 				type: 'link', // 分享类型,music、video或link，不填默认为link
 				dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 				success: () => {

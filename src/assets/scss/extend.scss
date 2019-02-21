@@ -72,7 +72,7 @@ html,body{
 }
 
 @function shineAnimate() {
-    @return shine random() * 5 + 5s ease-in-out infinite;
+    @return shine random() * 5 + 3s ease-in-out infinite;
 }
 @keyframes shine {
     0%, 100%{
@@ -80,7 +80,7 @@ html,body{
         scale: 1;
     }
     50%{
-        opacity: 0.5;
-        scale: 0.6;
+        opacity: 0.4;
+        scale: 0.5;
     }
 }

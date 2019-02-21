@@ -42,7 +42,7 @@
 
 <script>
 import { TweenMax, Power2, TimelineLite } from 'gsap/TweenMax';
-import { getComputedPx } from '@/config/utils.ts';
+import { getComputedPx } from '@/config/utils';
 import Hammer from 'hammerjs';
 
 const onepx = () => getComputedPx() / 100;
@@ -90,7 +90,8 @@ export default {
 		animationOne() {
 			if (this.animating) return;
 			this.animating = true;
-			const tl = new TimelineLite({
+			const tl = new TimelineLite();
+			const tlText = new TimelineLite({
 				onComplete: () => {
 					this.animating = false;
 					// setTimeout(() => {
@@ -98,7 +99,8 @@ export default {
 					// }, 1000);
 				},
 			});
-			tl.to(this.$refs.text1, 1, { opacity: 1 });
+			tl.fromTo(this.$refs.big, 2, { x: 500 * onepx(), opacity: 0 }, { x: 0, opacity: 0.5 });
+			tlText.to(this.$refs.text1, 1, { opacity: 1 });
 		},
 		animationTwo() {
 			if (this.animating) return;
@@ -114,7 +116,7 @@ export default {
 			});
 
 			const result = ((BIG_WIDTH - 433) + 280) * -1 * onepx();
-			console.log(result);
+
             // 大背景动画移动
 			tl.to(this.$refs.big, 3, { x: result });
             // 文字动画
@@ -191,7 +193,7 @@ export default {
     overflow: hidden;
 
     &__moving{
-        opacity: .5;
+        opacity: 0;
         width: tw(1521);
         height: tw(2222);
         position: absolute;

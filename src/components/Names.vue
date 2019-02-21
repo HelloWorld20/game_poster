@@ -2,86 +2,88 @@
     <section class="names"
         :style="{'background-image': `url(${require('imgs/bg-main.png')})`}"
     >
-        <div class="names__one">
-            <div class="names__one--1"
-                :style="{'background-image': `url(${require('imgs/name/bg-yuminhong.png')})`}"
-            ></div>
-            <div class="names__one--2"
-                :style="{'background-image': `url(${require('imgs/name/bg-papi.png')})`}"
-            ></div>
-            <div class="names__one--3"
-                :style="{'background-image': `url(${require('imgs/name/bg-zhangmofan.png')})`}"
-            ></div>
-            <div class="names__one--4"
-                :style="{'background-image': `url(${require('imgs/name/bg-panyao.png')})`}"
-            ></div>
-            <div class="names__one--5"
-                :style="{'background-image': `url(${require('imgs/name/bg-fandeng.png')})`}"
-            ></div>
-            <div class="names__one--6"
-                :style="{'background-image': `url(${require('imgs/name/bg-libeika.png')})`}"
-            ></div>
-            <div class="names__one--7"
-                :style="{'background-image': `url(${require('imgs/name/bg-liangzhanhua.png')})`}"
-            ></div>
-            <div class="names__one--8"
-                :style="{'background-image': `url(${require('imgs/name/bg-qinshuo.png')})`}"
-            ></div>
-        </div>
-        <div class="names__input">
-            <div class="names__input-me"
-                :style="{'background-image': `url(${require('imgs/name/bg-me.png')})`}"
-            ></div>
-            <div class="names__input-box">
-                <div class="names__input-box-text">
-                    <span>
-                        {{names}}
-                        <span v-show="blinkShown"></span>
-                    </span>
-                </div>
-                <input type="text" v-model="names"
-                    class="names__input-box-input"
-                    ref="input"
-                    autofocus
-                    @focus="blinkShown = true"
-                    @blur="blinkShown = false"
-                >
+        <div class="names__block">
+            <div class="names__one">
+                <div class="names__one--1"
+                    :style="{'background-image': `url(${require('imgs/name/bg-yuminhong.png')})`}"
+                ></div>
+                <div class="names__one--2"
+                    :style="{'background-image': `url(${require('imgs/name/bg-papi.png')})`}"
+                ></div>
+                <div class="names__one--3"
+                    :style="{'background-image': `url(${require('imgs/name/bg-zhangmofan.png')})`}"
+                ></div>
+                <div class="names__one--4"
+                    :style="{'background-image': `url(${require('imgs/name/bg-panyao.png')})`}"
+                ></div>
+                <div class="names__one--5"
+                    :style="{'background-image': `url(${require('imgs/name/bg-fandeng.png')})`}"
+                ></div>
+                <div class="names__one--6"
+                    :style="{'background-image': `url(${require('imgs/name/bg-libeika.png')})`}"
+                ></div>
+                <div class="names__one--7"
+                    :style="{'background-image': `url(${require('imgs/name/bg-liangzhanhua.png')})`}"
+                ></div>
+                <div class="names__one--8"
+                    :style="{'background-image': `url(${require('imgs/name/bg-qinshuo.png')})`}"
+                ></div>
             </div>
+            <div class="names__input">
+                <div class="names__input-me"
+                    :style="{'background-image': `url(${require('imgs/name/bg-me.png')})`}"
+                ></div>
+                <div class="names__input-box">
+                    <div class="names__input-box-text">
+                        <span>
+                            {{names}}
+                            <span v-show="blinkShown"></span>
+                        </span>
+                    </div>
+                    <input type="text" v-model="names"
+                        class="names__input-box-input"
+                        ref="input"
+                        autofocus
+                        @focus="blinkShown = true"
+                        @blur="blinkShown = false"
+                    >
+                </div>
+            </div>
+            <div class="names__two">
+                <div class="names__two--1"
+                    :style="{'background-image': `url(${require('imgs/name/bg-linshao.png')})`}"
+                ></div>
+                <div class="names__two--2"
+                    :style="{'background-image': `url(${require('imgs/name/bg-linan.png')})`}"
+                ></div>
+                <div class="names__two--3"
+                    :style="{'background-image': `url(${require('imgs/name/bg-xuzhibin.png')})`}"
+                ></div>
+                <div class="names__two--4"
+                    :style="{'background-image': `url(${require('imgs/name/bg-songchao.png')})`}"
+                ></div>
+                <div class="names__two--5"
+                    :style="{'background-image': `url(${require('imgs/name/bg-yangdazhi.png')})`}"
+                ></div>
+                <div class="names__two--6"
+                    :style="{'background-image': `url(${require('imgs/name/bg-gudian.png')})`}"
+                ></div>
+                <div class="names__two--7"
+                    :style="{'background-image': `url(${require('imgs/name/bg-tanjing.png')})`}"
+                ></div>
+            </div>
+            <!-- <vue-wave></vue-wave> -->
+            <div class="names__btn"
+                @click="nextStep"
+                :style="{'background-image': `url(${require('imgs/btn-up.png')})`}"
+            ></div>
         </div>
-        <div class="names__two">
-            <div class="names__two--1"
-                :style="{'background-image': `url(${require('imgs/name/bg-linshao.png')})`}"
-            ></div>
-            <div class="names__two--2"
-                :style="{'background-image': `url(${require('imgs/name/bg-linan.png')})`}"
-            ></div>
-            <div class="names__two--3"
-                :style="{'background-image': `url(${require('imgs/name/bg-xuzhibin.png')})`}"
-            ></div>
-            <div class="names__two--4"
-                :style="{'background-image': `url(${require('imgs/name/bg-songchao.png')})`}"
-            ></div>
-            <div class="names__two--5"
-                :style="{'background-image': `url(${require('imgs/name/bg-yangdazhi.png')})`}"
-            ></div>
-            <div class="names__two--6"
-                :style="{'background-image': `url(${require('imgs/name/bg-gudian.png')})`}"
-            ></div>
-            <div class="names__two--7"
-                :style="{'background-image': `url(${require('imgs/name/bg-tanjing.png')})`}"
-            ></div>
-        </div>
-        <!-- <vue-wave></vue-wave> -->
-        <div class="names__btn"
-            @click="nextStep"
-            :style="{'background-image': `url(${require('imgs/btn-up.png')})`}"
-        ></div>
     </section>
 </template>
 
 <script>
-import { bus } from '@/config/util';
-import VueWave from '@/components/childComponents/Wave.vue';
+import { bus } from '@/config/utils';
+import VueWave from '@/components/childComponents/Wave';
 
 export default {
 	data() {
@@ -110,9 +112,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/scss/extend.scss';
-// .shineAnimate{
-//     animation: shine random() * 5 + 5s ease-in-out infinite;
-// }
 
 .names{
     width: 100%;
@@ -121,7 +120,14 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
-    padding-top: tw(198);
+    // padding-top: tw(198);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__block{
+        width: 100%;
+    }
 
     &__one{
         position: relative;

@@ -21,23 +21,24 @@
 </template>
 
 <script>
-import { bus } from '@/config/util';
+import { bus } from '@/config/utils';
 import Preload from '@/config/preload';
 import config from '@/config/config';
+import { setTimeout } from 'timers';
 
 export default {
 	data() {
 		return {
-			progress: 90,
+			progress: 0,
 		};
 	},
 	created() {
 		const preload = new Preload(config, this.percentage, this.loaded);
-        // preload.init();
+		preload.init();
 
-		setTimeout(() => {
-			this.loaded();
-		}, 3000);
+		// setTimeout(() => {
+		// 	this.loaded();
+		// }, 3000);
         // bus.musicList.bgm = new Howl({
         //     src: [require('@/assets/audios/bgm.mp3')],
         //     loop: true
@@ -48,10 +49,14 @@ export default {
 	},
 	methods: {
 		percentage(data) {
-
+			this.progress = parseInt(data * 100, 10);
 		},
 		loaded() {
-			this.$router.replace('Home');
+			setTimeout(() => {
+				this.$router.replace('Home');
+			}, 1000);
+			// console.log('loaded');
+			// this.$router.replace('Home');
 		},
 	},
 };
@@ -82,6 +87,10 @@ export default {
             background-repeat: no-repeat;
             width: 100%;height: 100%;
             position: absolute;
+        }
+
+        &-white{
+            transition: width 1s ease-in-out;
         }
 
     }
