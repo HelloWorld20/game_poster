@@ -24,8 +24,8 @@
 import { bus } from '@/config/utils';
 import Preload from '@/config/preload';
 import config from '@/config/config';
-import { setTimeout } from 'timers';
 
+const audioLoaded = false;
 export default {
 	data() {
 		return {
@@ -35,17 +35,6 @@ export default {
 	created() {
 		const preload = new Preload(config, this.percentage, this.loaded);
 		preload.init();
-
-		// setTimeout(() => {
-		// 	this.loaded();
-		// }, 3000);
-        // bus.musicList.bgm = new Howl({
-        //     src: [require('@/assets/audios/bgm.mp3')],
-        //     loop: true
-        // });
-        // bus.musicList.click = new Howl({
-        //     src: [require('@/assets/audios/click.mp3')]
-        // })
 	},
 	methods: {
 		percentage(data) {
@@ -53,10 +42,9 @@ export default {
 		},
 		loaded() {
 			setTimeout(() => {
+				bus.musicList.bgm.play();
 				this.$router.replace('Home');
 			}, 1000);
-			// console.log('loaded');
-			// this.$router.replace('Home');
 		},
 	},
 };
@@ -89,9 +77,9 @@ export default {
             position: absolute;
         }
 
-        &-white{
-            transition: width 1s ease-in-out;
-        }
+        // &-white{
+        //     transition: width 1s ease-in-out;
+        // }
 
     }
     &__text{

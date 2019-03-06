@@ -1,16 +1,19 @@
-
+import { Howl } from 'howler';
 import { bus } from '@/config/utils';
 let loaded: number = 0;
 let totalLen: number;
+let percentage = 0;
 
 interface config {
-    imgs: Array<string>
+    imgs: Array<string>,
+    audios: Object
 }
 
 export default class Preload {
 
 	config: config = {
-        imgs: []
+        imgs: [],
+        audios: {}
     };
 	percentageCB = (percentage: number): void => {};
 	loadedCB = (percentage: number): void => {};
@@ -22,15 +25,16 @@ export default class Preload {
 	}
 
 	init() {
-		this.preloadImg();
+        totalLen = this.config.imgs.length + Object.keys(this.config.audios).length;
+        this.preloadImg();
+        this.preloadAudio();
+
 	}
 
 	preloadImg() {
         // 资源写在@/config/config.js里
         bus.imagesCache = [];
         let imgs: any = this.config.imgs;
-		totalLen = imgs.length;
-		let percentage = 0;
 
 		imgs.forEach((v: string, i: number) => {
 			const img = new Image();
@@ -39,11 +43,9 @@ export default class Preload {
 				loaded++;
 
 				percentage = loaded / totalLen;
-
-            // 因为ios没法正确触发音乐的canplaythrough方法，所以进度只算图片进度。
-            // 向父组件抛出进度事件
+                // 向父组件抛出进度事件
 				this.percentageCB(percentage);
-            // $emit('percentage', percentage);
+                // $emit('percentage', percentage);
 
 				if (loaded >= totalLen) {
                 // 向父组件抛出加载完成事件
@@ -56,6 +58,32 @@ export default class Preload {
 			img.src = require(`@/assets/${v}`);
 			bus.imagesCache[i] = img;
 		});
-	}
+    }
+
+    preloadAudio() {
+        bus.musicList = {};
+
+        Object.keys(this.config.audios).forEach(v => {
+            let audioConfig = this.config.audios[v]
+            bus.musicList[v] = new Howl({
+                src: [require(`@/assets/${audioConfig.src}`)],
+                loop: audioConfig.loop,
+                onload: () => {
+                    loaded++;
+
+                    percentage = loaded / totalLen;
+                    // 向父组件抛出进度事件
+                    this.percentageCB(percentage);
+                    // $emit('percentage', percentage);
+
+                    if (loaded >= totalLen) {
+                    // 向父组件抛出加载完成事件
+                    // $emit('loaded', percentage);
+                        this.loadedCB(percentage);
+                    }
+                },
+            });
+        })
+    }
 }
 

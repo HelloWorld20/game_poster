@@ -4,9 +4,12 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import sdk from './config/sdk';
+import VueToast from './lib/toast';
 import { isWeixinBrowser } from './config/utils';
 
 require('@/assets/animate.css');
+
+Vue.use(VueToast);
 
 Vue.config.productionTip = false;
 

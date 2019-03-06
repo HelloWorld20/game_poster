@@ -109,10 +109,10 @@ export default {
 			});
 
 			tl.to([this.$refs.slogan1, this.$refs.slogan2, this.$refs.slogan3], 0.5, { opacity: 0 })
-                .to(this.$refs.slogan4, 1, { opacity: 1 })
-                .to(this.$refs.slogan5, 1, { opacity: 1 })
+                .to(this.$refs.slogan7, 1, { opacity: 1 })
                 .to(this.$refs.slogan6, 1, { opacity: 1 })
-                .to(this.$refs.slogan7, 1, { opacity: 1 });
+                .to(this.$refs.slogan5, 1, { opacity: 1 })
+                .to(this.$refs.slogan4, 1, { opacity: 1 });
 		},
 		nextStep() {
 			if (ready) {

@@ -48,5 +48,6 @@ module.exports = {
     "globals": {
         "wx": 0,
         "$": 0,
+        "require": 0
     },
 }

@@ -77,14 +77,14 @@ export default {
 				onComplete: this.onComplete,
 			});
 			tl.fromTo(this.$refs.logo, 3, { scale: 4, opacity: 0.5 }, { scale: 1, opacity: 1 })
-                .to(this.$refs.newworld, 0.5, { opacity: 1 })
-                .to(this.$refs.many, 0.5, { opacity: 1 })
-                .to(this.$refs.noname, 0.5, { opacity: 1 })
-                .to(this.$refs.mention, 0.5, { opacity: 1 })
-                .to(this.$refs.guid, 0.5, { opacity: 1 })
+                .to(this.$refs.newworld, 0.7, { opacity: 1 })
+                .to(this.$refs.many, 0.7, { opacity: 1 })
+                .to(this.$refs.noname, 0.7, { opacity: 1 })
+                .to(this.$refs.mention, 0.7, { opacity: 1 })
+                .to(this.$refs.guid, 0.7, { opacity: 1 })
                 .addLabel('sloganEnd', '+=0.5')
                 .to(this.$refs.change, 1, { opacity: 1 })
-                .to(this.$refs.small, 0.5, { opacity: 1 }, 'sloganEnd')
+                .fromTo(this.$refs.small, 1, { scale: 0 }, { opacity: 1, scale: 1 }, 'sloganEnd')
                 .to(this.$refs.arrow, 0.5, { opacity: 1 });
 		},
 		onComplete() {

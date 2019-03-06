@@ -27,7 +27,7 @@ export default {
         position: absolute;
         border-radius: 100%;
         transform-origin: center;
-        border: 1px solid white;
+        border: 3px solid white;
         animation: wave 2s ease-in infinite;
     }
 }

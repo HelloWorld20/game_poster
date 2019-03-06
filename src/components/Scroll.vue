@@ -7,7 +7,7 @@
             :style="{'background-image': `url(${require('imgs/bg-logo-large.png')})`}"
         ></div>
         <div class="scroll__logo"
-            :style="{'background-image': `url(${require('imgs/bg-logo-gold.png')})`}"
+            :style="{'background-image': `url(${require('imgs/bg-logo-gold2.png')})`}"
         ></div>
         <div class="scroll__text">
             <div class="scroll__text--1"

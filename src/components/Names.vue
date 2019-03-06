@@ -3,38 +3,42 @@
         :style="{'background-image': `url(${require('imgs/bg-main.png')})`}"
     >
         <div class="names__block">
-            <div class="names__one">
-                <div class="names__one--1"
-                    :style="{'background-image': `url(${require('imgs/name/bg-yuminhong.png')})`}"
-                ></div>
-                <div class="names__one--2"
-                    :style="{'background-image': `url(${require('imgs/name/bg-papi.png')})`}"
-                ></div>
-                <div class="names__one--3"
-                    :style="{'background-image': `url(${require('imgs/name/bg-zhangmofan.png')})`}"
-                ></div>
-                <div class="names__one--4"
-                    :style="{'background-image': `url(${require('imgs/name/bg-panyao.png')})`}"
-                ></div>
-                <div class="names__one--5"
-                    :style="{'background-image': `url(${require('imgs/name/bg-fandeng.png')})`}"
-                ></div>
-                <div class="names__one--6"
-                    :style="{'background-image': `url(${require('imgs/name/bg-libeika.png')})`}"
-                ></div>
-                <div class="names__one--7"
-                    :style="{'background-image': `url(${require('imgs/name/bg-liangzhanhua.png')})`}"
-                ></div>
-                <div class="names__one--8"
-                    :style="{'background-image': `url(${require('imgs/name/bg-qinshuo.png')})`}"
-                ></div>
-            </div>
+            <transition enter-active-class="fadeIn">
+                <div class="names__one animated slow" v-show="ready">
+                    <div class="names__one--1"
+                        :style="{'background-image': `url(${require('imgs/name/bg-yuminhong.png')})`}"
+                    ></div>
+                    <div class="names__one--2"
+                        :style="{'background-image': `url(${require('imgs/name/bg-papi.png')})`}"
+                    ></div>
+                    <div class="names__one--3"
+                        :style="{'background-image': `url(${require('imgs/name/bg-zhangmofan.png')})`}"
+                    ></div>
+                    <div class="names__one--4"
+                        :style="{'background-image': `url(${require('imgs/name/bg-panyao.png')})`}"
+                    ></div>
+                    <div class="names__one--5"
+                        :style="{'background-image': `url(${require('imgs/name/bg-fandeng.png')})`}"
+                    ></div>
+                    <div class="names__one--6"
+                        :style="{'background-image': `url(${require('imgs/name/bg-libeika.png')})`}"
+                    ></div>
+                    <div class="names__one--7"
+                        :style="{'background-image': `url(${require('imgs/name/bg-liangzhanhua.png')})`}"
+                    ></div>
+                    <div class="names__one--8"
+                        :style="{'background-image': `url(${require('imgs/name/bg-qinshuo.png')})`}"
+                    ></div>
+                </div>
+            </transition>
             <div class="names__input">
                 <div class="names__input-me"
                     :style="{'background-image': `url(${require('imgs/name/bg-me.png')})`}"
                 ></div>
                 <div class="names__input-box">
-                    <div class="names__input-box-text">
+                    <div class="names__input-box-text"
+                        @click="$refs.input.focus();"
+                    >
                         <span>
                             {{names}}
                             <span v-show="blinkShown"></span>
@@ -49,29 +53,31 @@
                     >
                 </div>
             </div>
-            <div class="names__two">
-                <div class="names__two--1"
-                    :style="{'background-image': `url(${require('imgs/name/bg-linshao.png')})`}"
-                ></div>
-                <div class="names__two--2"
-                    :style="{'background-image': `url(${require('imgs/name/bg-linan.png')})`}"
-                ></div>
-                <div class="names__two--3"
-                    :style="{'background-image': `url(${require('imgs/name/bg-xuzhibin.png')})`}"
-                ></div>
-                <div class="names__two--4"
-                    :style="{'background-image': `url(${require('imgs/name/bg-songchao.png')})`}"
-                ></div>
-                <div class="names__two--5"
-                    :style="{'background-image': `url(${require('imgs/name/bg-yangdazhi.png')})`}"
-                ></div>
-                <div class="names__two--6"
-                    :style="{'background-image': `url(${require('imgs/name/bg-gudian.png')})`}"
-                ></div>
-                <div class="names__two--7"
-                    :style="{'background-image': `url(${require('imgs/name/bg-tanjing.png')})`}"
-                ></div>
-            </div>
+            <transition enter-active-class="fadeIn">
+                <div class="names__two animated slow" v-show="ready">
+                    <div class="names__two--1"
+                        :style="{'background-image': `url(${require('imgs/name/bg-linshao.png')})`}"
+                    ></div>
+                    <div class="names__two--2"
+                        :style="{'background-image': `url(${require('imgs/name/bg-linan.png')})`}"
+                    ></div>
+                    <div class="names__two--3"
+                        :style="{'background-image': `url(${require('imgs/name/bg-xuzhibin.png')})`}"
+                    ></div>
+                    <div class="names__two--4"
+                        :style="{'background-image': `url(${require('imgs/name/bg-songchao.png')})`}"
+                    ></div>
+                    <div class="names__two--5"
+                        :style="{'background-image': `url(${require('imgs/name/bg-yangdazhi.png')})`}"
+                    ></div>
+                    <div class="names__two--6"
+                        :style="{'background-image': `url(${require('imgs/name/bg-gudian.png')})`}"
+                    ></div>
+                    <div class="names__two--7"
+                        :style="{'background-image': `url(${require('imgs/name/bg-tanjing.png')})`}"
+                    ></div>
+                </div>
+            </transition>
             <!-- <vue-wave></vue-wave> -->
             <div class="names__btn"
                 @click="nextStep"
@@ -90,9 +96,13 @@ export default {
 		return {
 			names: '',
 			blinkShown: false,
+			ready: false,
 		};
 	},
 	components: { VueWave },
+	mounted() {
+		this.ready = true;
+	},
 	methods: {
 		nextStep() {
 			if (this.names)	{
@@ -133,7 +143,7 @@ export default {
         position: relative;
         width: 100%;
         height: tw(310);
-        opacity: .5;
+        // opacity: .5;
         &>div{
             position: absolute;
             background-position: left center;
@@ -257,7 +267,8 @@ export default {
                 font-size: tw(46);
                 line-height: tw(90);
                 text-align: center;
-                opacity: 0;
+                opacity: 0.4;
+                transform: translateY(-100000px)
 
             }
         }
@@ -268,7 +279,7 @@ export default {
         width: 100%;
         height: tw(278);
         margin-top: tw(12);
-        opacity: .5;
+        // opacity: .5;
         &>div{
             position: absolute;
             width: tw(300);
